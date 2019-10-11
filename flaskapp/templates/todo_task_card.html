@@ -15,12 +15,12 @@
       </a>
     </div>
     <div class="todo-content">
-      <h6 class="card-subtitle mb-2 text-muted">{{ task.date_created | friendly_datetime }}</h6>
+      <h6 class="card-subtitle text-muted todo-date">{{ task.date_created | friendly_datetime }}</h6>
       <h5 class="card-title todo-title {{ title_class }}">{{ task.content }}</h5>
     </div>
     <div class="todo-delete-button">
       <a onclick="deleteTodo('{{ task.id }}');">
-        <i class="fas fa-trash-alt fa-2x todo-delete-button-icon"></i>
+        <i class="fas fa-trash-alt fa-lg todo-delete-button-icon"></i>
       </a>
     </div>
   </div>

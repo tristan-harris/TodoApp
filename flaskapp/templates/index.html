@@ -2,8 +2,8 @@
 {% block content %}
   <div class="content">
     <h1 class="text-center page-title"><i class="far fa-list-alt"></i> Task Master <i class="far fa-list-alt"></i></h1>
-    {% if tasks|length < 1 %}
-    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    {% if tasks|length == 0 %}
+      <h4 id="no-tasks-message">There are no tasks. Create one below.</h4>
     {% else %}
 
     {% for task in tasks %}
@@ -18,7 +18,8 @@
       <i class="fas fa-plus-circle fa-2x" onclick="newTodoTask();"></i>
     </div>
   </div>
-  <div class="mb-4"></div>
+  <!-- End of page buffer -->
+  <div style="height: 50px;"></div>
 {% endblock content %}
 {% block javascript %}
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>

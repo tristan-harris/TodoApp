@@ -7,6 +7,7 @@ body {
 .card-body {
   display: flex;
   flex-direction: row;
+  padding: 10px;
 }
 
 .todo-card {
@@ -23,11 +24,12 @@ body {
 .todo-tick-button {
   width: 5%;
   min-width: 40px;
+  align-self: center;
 }
 .todo-tick-button a {
   color: var(--success) !important;
   text-align: center;
-  align-items: center;
+  text-align: center;
 }
 .todo-tick-button a:hover {
   cursor: pointer;
@@ -41,9 +43,15 @@ body {
   color: grey;
 }
 
+.todo-date {
+  font-size: 14px;
+}
+
 .todo-delete-button {
   width: 5%;
   min-width: 40px;
+  align-self: center;
+  text-align: center;
 }
 .todo-delete-button a {
   color: var(--danger) !important;
@@ -58,15 +66,34 @@ body {
   transition: opacity 500ms ease;
 }
 
-/* 
+.todo-content {
+  width: 100%;
+}
+
+#new-todo-task {
+  display: none;
+}
+
 #new-todo-content {
-  width: 80%;
-  float: left;
+  flex-grow: 1;
 }
 #new-todo-submit {
   width: 100px;
-  float: right;
-} */
+  margin-left: 5px;
+}
+
+@media (max-width: 700px) {
+  #new-todo-content {
+    display: block;
+    width: 100%;
+  }
+  #new-todo-submit {
+    display: block;
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+}
 
 .new-todo-button {
   text-align: center;
@@ -80,3 +107,8 @@ body {
   cursor: pointer;
 }
 
+#no-tasks-message {
+  text-align: center;
+  font-style: italic;
+  color: white;
+}

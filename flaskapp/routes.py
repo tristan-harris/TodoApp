@@ -1,32 +1,14 @@
 from flask import request, render_template, redirect, current_app, jsonify, make_response
 from flaskapp import db, app
 from flaskapp.models import Todo
+from flaskapp.utils import json_error_response
 
-def json_error_response(message_contents, error_code=500):
-    return make_response(jsonify({"message":message_contents}), error_code)
 
 
 @app.route('/')
 def index():
     tasks = Todo.query.order_by(Todo.date_created).all()
     return render_template('index.html', tasks=tasks)
-
-
-@app.route('/update/<int:todo_id>', methods=['GET', 'POST'])
-def update(todo_id):
-    task = Todo.query.get_or_404(todo_id)
-
-    if request.method == 'POST':
-        task.content = request.form['content']
-
-        try:
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'There was an issue updating your task'
-
-    else:
-        return render_template('update.html', task=task)
 
 
 @app.route('/api', methods=['POST'])
@@ -46,10 +28,10 @@ def delete():
         res = make_response(jsonify({"message":"todo deleted"}), 200)
         return res
     except:
-        return 'There was a problem deleting that task'
+        return json_error_response('There was a problem deleting that task')
 
 
-@app.route('/update-card-completed', methods=['POST'])
+@app.route('/completed', methods=['POST'])
 def card_completed():
     req = request.get_json()
     task = Todo.query.get_or_404(req['todo-id'])
@@ -59,7 +41,7 @@ def card_completed():
         res = make_response(jsonify({"message":"todo completed status updated"}), 200)
         return res
     except:
-        return 'There was a problem updating that task'
+        return json_error_response('There was a problem updating that task')
 
 
 @app.route('/create', methods=['POST'])
