@@ -1,0 +1,25 @@
+<div class="card mx-auto mt-3 shadow todo-card" id="new-todo-task">
+  <div class="card-body">
+    <div class="todo-content">
+      <form class="form-inline" style="display: flex;">
+        <input
+          class="form-control"
+          id="new-todo-content"
+          type="text"
+          placeholder="Enter task here..."
+          onfocusout="checkNewTodoFocus();"
+          style="flex-grow: 1;"
+        />
+        <input
+          class="btn btn-primary"
+          id="new-todo-submit"
+          type="submit"
+          onclick="createNewTodo();"
+          onfocusout="checkNewTodoFocus();"
+          value="Create"
+          width: 180px;
+        />
+      </form>
+    </div>
+  </div>
+</div>

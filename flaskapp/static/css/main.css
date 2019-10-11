@@ -1,0 +1,82 @@
+/* https://visme.co/blog/wp-content/uploads/2016/09/website4-1024x512.jpg */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: hsl(120, 40%, 80%);
+}
+.card-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.todo-card {
+  width: 70%;
+  min-width: 300px;
+}
+
+.page-title {
+  font-size: 64px;
+  font-weight: bold;
+  color: white;
+}
+
+.todo-tick-button {
+  width: 5%;
+  min-width: 40px;
+}
+.todo-tick-button a {
+  color: var(--success) !important;
+  text-align: center;
+  align-items: center;
+}
+.todo-tick-button a:hover {
+  cursor: pointer;
+}
+
+.todo-content {
+  width: 90%;
+}
+.todo-title-completed {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.todo-delete-button {
+  width: 5%;
+  min-width: 40px;
+}
+.todo-delete-button a {
+  color: var(--danger) !important;
+}
+.todo-delete-button a:hover {
+  cursor: pointer;
+}
+
+.card-fade-out {
+  opacity: 1;
+  -webkit-transition: opacity 500ms ease;
+  transition: opacity 500ms ease;
+}
+
+/* 
+#new-todo-content {
+  width: 80%;
+  float: left;
+}
+#new-todo-submit {
+  width: 100px;
+  float: right;
+} */
+
+.new-todo-button {
+  text-align: center;
+}
+.new-todo-button i {
+  color: hsl(0, 0%, 100%, 50%);
+  transition-duration: 0.3s;
+}
+.new-todo-button i:hover {
+  color: white;
+  cursor: pointer;
+}
+

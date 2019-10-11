@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="content">
+    <h1 class="text-center page-title"><i class="far fa-list-alt"></i> Task Master <i class="far fa-list-alt"></i></h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    {% else %}
+
+    {% for task in tasks %}
+      {% include 'todo_task_card.html' %}
+    {% endfor %}
+
+    {% endif %}
+
+    {% include 'new_todo_task_card.html' %}
+
+    <div class="new-todo-button mt-4">
+      <i class="fas fa-plus-circle fa-2x" onclick="newTodoTask();"></i>
+    </div>
+  </div>
+  <div class="mb-4"></div>
+{% endblock content %}
+{% block javascript %}
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock javascript %}

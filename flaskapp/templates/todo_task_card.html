@@ -1,0 +1,27 @@
+<div class="card mx-auto mt-3 shadow-sm todo-card" data-todo-task-id="{{ task.id }}">
+  <div class="card-body">
+    <div class="todo-tick-button">
+      <a onclick="crossTodo('{{ task.id }}');">
+
+        {% if task.completed %}
+          {% set completed_icon = 'fas fa-check-square' %}
+          {% set title_class = 'todo-title-completed' %}
+        {% else %}
+          {% set completed_icon = 'far fa-square' %}
+          {% set title_class = '' %}
+        {% endif %}
+
+        <i class="{{ completed_icon }} fa-2x todo-tick-button-icon"></i>
+      </a>
+    </div>
+    <div class="todo-content">
+      <h6 class="card-subtitle mb-2 text-muted">{{ task.date_created | friendly_datetime }}</h6>
+      <h5 class="card-title todo-title {{ title_class }}">{{ task.content }}</h5>
+    </div>
+    <div class="todo-delete-button">
+      <a onclick="deleteTodo('{{ task.id }}');">
+        <i class="fas fa-trash-alt fa-2x todo-delete-button-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
