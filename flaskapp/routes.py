@@ -51,7 +51,7 @@ def create_todo():
     try:
         db.session.add(new_todo)
         db.session.commit()
-        res = make_response(jsonify({"message":"todo added"}), 200)
+        res = make_response(jsonify({"todo-html":render_template('todo_task_card.html', task=new_todo)}), 200)
         return res
     except:
         return json_error_response('Could not create todo')

@@ -2,15 +2,15 @@
 {% block content %}
   <div class="content">
     <h1 class="text-center page-title"><i class="far fa-list-alt"></i> Task Master <i class="far fa-list-alt"></i></h1>
-    {% if tasks|length == 0 %}
-      <h4 id="no-tasks-message">There are no tasks. Create one below.</h4>
-    {% else %}
-
-    {% for task in tasks %}
-      {% include 'todo_task_card.html' %}
-    {% endfor %}
-
-    {% endif %}
+    <div id="todo-list">
+      {% if tasks|length == 0 %}
+        <h4 id="no-tasks-message">There are no tasks. Create one below.</h4>
+      {% else %}
+        {% for task in tasks %}
+          {% include 'todo_task_card.html' %}
+        {% endfor %}
+      {% endif %}
+    </div>
 
     {% include 'new_todo_task_card.html' %}
 

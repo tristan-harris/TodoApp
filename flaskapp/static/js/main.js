@@ -68,7 +68,28 @@ function deleteTodo(todo_task_id) {
 
 function createNewTodo() {
     const todo_title = document.getElementById("new-todo-content").value;
-    sendJSON('/create', {"todo-title": todo_title});
+    // sendJSON('/create', {"todo-title": todo_title});
+    hideNewTodoTask();
+
+    fetch('/create', {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({"todo-title": todo_title}),
+        cache: "no-cache",
+        headers: new Headers({
+            "content-type": "application/json"
+        })
+    }).then(function(response) {
+
+        if(response.status !== 200) {
+            console.error(`ERROR [status!=200]: Response status -> ${response.status}`);
+            return ;
+        }
+        response.json().then(function(data) {
+            const main_container = document.getElementById("todo-list");
+            main_container.insertAdjacentHTML('beforeend', data["todo-html"]);
+        })
+    });
 }
 
 function newTodoTask() {
@@ -80,6 +101,16 @@ function newTodoTask() {
 
     const new_todo_task_input = new_todo_task.querySelector('#new-todo-content');
     new_todo_task_input.focus();
+}
+
+function hideNewTodoTask() {
+    const new_todo_task = document.getElementById('new-todo-task');
+    const new_todo_button = document.querySelector('.new-todo-button');
+    const new_todo_task_input = new_todo_task.querySelector('#new-todo-content');
+
+    new_todo_task_input.value = "";
+    new_todo_task.style.display = "none";
+    new_todo_button.style.display = "block";
 }
 
 function checkNewTodoFocus() {
