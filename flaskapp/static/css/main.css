@@ -1,9 +1,24 @@
 /* https://visme.co/blog/wp-content/uploads/2016/09/website4-1024x512.jpg */
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background: hsl(120, 40%, 80%);
+  /* success */
+  /* background: hsl(156, 54%, 57%); */
+
+  /* primary */
+  /* background: hsl(163, 38%, 62%); */
+
+  /* original */
+  background: hsl(168, 20%, 80%);
 }
+
+.page-title-div {
+  margin: 0 auto;
+  width: 70%;
+  min-width: 300px;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
 .card-body {
   display: flex;
   flex-direction: row;
@@ -18,7 +33,12 @@ body {
 .page-title {
   font-size: 64px;
   font-weight: bold;
-  color: white;
+  color: var(--white);
+}
+@media (max-width: 991px) {
+  .page-title-icon {
+    display: none;
+  }
 }
 
 .todo-tick-button {
@@ -40,7 +60,7 @@ body {
 }
 .todo-title-completed {
   text-decoration: line-through;
-  color: grey;
+  color: #d3d3d3 !important;
 }
 
 .todo-date {
@@ -103,12 +123,12 @@ body {
   transition-duration: 0.3s;
 }
 .new-todo-button i:hover {
-  color: white;
+  color: var(--white);
   cursor: pointer;
 }
 
 #no-tasks-message {
   text-align: center;
   font-style: italic;
-  color: white;
+  color: var(--white);
 }
