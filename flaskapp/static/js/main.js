@@ -36,8 +36,7 @@ function sendJSON(address, the_data) {
         
     });
 }
-
-
+ 
 function crossTodo(todo_task_id) {
     const the_card = document.querySelector('.todo-card[data-todo-task-id="' + todo_task_id + '"]');
     const tick_icon = the_card.querySelector('.todo-tick-button-icon');

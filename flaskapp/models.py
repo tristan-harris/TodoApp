@@ -8,4 +8,4 @@ class Todo(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"Todo(id={id}, content='{content}')"
+        return f"Todo(id={self.id}, content='{self.content}')"

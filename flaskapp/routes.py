@@ -14,7 +14,7 @@ def index():
 @app.route('/api', methods=['POST'])
 def api():
     req = request.get_json()
-    res = make_response(jsonify({"message":"recieved"}), 200)
+    res = make_response(jsonify({'message':'recieved'}), 200)
     return res
 
 
@@ -25,7 +25,7 @@ def delete():
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        res = make_response(jsonify({"message":"todo deleted"}), 200)
+        res = make_response(jsonify({'message':'todo deleted'}), 200)
         return res
     except:
         return json_error_response('There was a problem deleting that task')
@@ -38,7 +38,7 @@ def card_completed():
     task.completed = req['todo-completed']
     try:
         db.session.commit()
-        res = make_response(jsonify({"message":"todo completed status updated"}), 200)
+        res = make_response(jsonify({'message':'todo completed status updated'}), 200)
         return res
     except:
         return json_error_response('There was a problem updating that task')
@@ -47,11 +47,11 @@ def card_completed():
 @app.route('/create', methods=['POST'])
 def create_todo():
     req = request.get_json()
-    new_todo = Todo(content=req['todo-title']);
+    new_todo = Todo(content=req['todo-title'])
     try:
         db.session.add(new_todo)
         db.session.commit()
-        res = make_response(jsonify({"todo-html":render_template('todo_task_card.html', task=new_todo)}), 200)
+        res = make_response(jsonify({'todo-html':render_template('todo_task_card.html', task=new_todo)}), 200)
         return res
     except:
         return json_error_response('Could not create todo')
