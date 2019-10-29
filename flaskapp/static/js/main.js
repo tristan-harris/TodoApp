@@ -25,11 +25,10 @@ function sendJSON(address, the_data) {
         })
     }).then(function(response) {
 
-        if(response.status !== 200) {
-            console.error(`ERROR [status!=200]: Response status -> ${response.status}`);
-            return ;
-        }
-
+        // if(response.status !== 200) {
+        //     console.error(`ERROR [status!=200]: Response status -> ${response.status}`);
+        //     return ;
+        // }
         response.json().then(function(data) {
             console.log(data);
         })
@@ -69,6 +68,8 @@ function createNewTodo() {
     const todo_title = document.getElementById("new-todo-content").value;
     // sendJSON('/create', {"todo-title": todo_title});
     hideNewTodoTask();
+    
+    // TODO: Fix this duplicate code
 
     fetch('/create', {
         method: "POST",
@@ -80,11 +81,12 @@ function createNewTodo() {
         })
     }).then(function(response) {
 
-        if(response.status !== 200) {
-            console.error(`ERROR [status!=200]: Response status -> ${response.status}`);
-            return ;
-        }
+        // if(response.status !== 200) {
+        //     console.error(`ERROR [status!=200]: Response status -> ${response.status}`);
+        //     return ;
+        // }
         response.json().then(function(data) {
+            console.log(data);
             const main_container = document.getElementById("todo-list");
             main_container.insertAdjacentHTML('beforeend', data["todo-html"]);
         })
@@ -120,7 +122,6 @@ function checkNewTodoFocus() {
     // needs to be a timer between switching focus, because active element gets set to the body inbetween switch
     setTimeout(function()
     {
-        console.log(document.activeElement);
         if(document.activeElement !== new_todo_task_input && document.activeElement !== new_todo_task_submit) 
         {
             const new_todo_button = document.querySelector('.new-todo-button');

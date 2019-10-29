@@ -13,9 +13,8 @@ app.jinja_env.filters['friendly_datetime'] = friendly_datetime
 db = SQLAlchemy()
 db.init_app(app)
 
-from flaskapp.commands import create_todo, test_command
+from flaskapp.commands import create_todo
 app.cli.add_command(create_todo)
-app.cli.add_command(test_command)
 
 from flaskapp import routes
 

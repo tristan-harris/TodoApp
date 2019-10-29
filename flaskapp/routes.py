@@ -2,8 +2,11 @@ from flask import request, render_template, redirect, current_app, jsonify, make
 from flaskapp import db, app
 from flaskapp.models import Todo
 from flaskapp.utils import json_error_response
+import traceback
 
-
+def database_commit():
+    if app.config['DATABASE_ACCESS']:
+        db.session.commit()
 
 @app.route('/')
 def index():
@@ -24,10 +27,11 @@ def delete():
     task_to_delete = Todo.query.get_or_404(req['todo-id'])
     try:
         db.session.delete(task_to_delete)
-        db.session.commit()
+        database_commit()
         res = make_response(jsonify({'message':'todo deleted'}), 200)
         return res
-    except:
+    except Exception as e:
+        print(e)
         return json_error_response('There was a problem deleting that task')
 
 
@@ -37,10 +41,11 @@ def card_completed():
     task = Todo.query.get_or_404(req['todo-id'])
     task.completed = req['todo-completed']
     try:
-        db.session.commit()
+        database_commit()
         res = make_response(jsonify({'message':'todo completed status updated'}), 200)
         return res
-    except:
+    except Exception as e:
+        print(e)
         return json_error_response('There was a problem updating that task')
 
 
@@ -50,8 +55,10 @@ def create_todo():
     new_todo = Todo(content=req['todo-title'])
     try:
         db.session.add(new_todo)
-        db.session.commit()
+        database_commit()
         res = make_response(jsonify({'todo-html':render_template('todo_task_card.html', task=new_todo)}), 200)
         return res
-    except:
+    except Exception as e:
+        print(e)
+        print(traceback.format_exc(e.__traceback__))
         return json_error_response('Could not create todo')

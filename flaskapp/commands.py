@@ -2,6 +2,10 @@ import click
 from flaskapp.models import Todo
 from flaskapp import app, db
 
+'''
+    Can add custom commands here, which is useful for Heroku
+'''
+
 @app.cli.command('create-todo')
 @click.option('-c', '--content', help='The title of the todo task')
 def create_todo(content):
