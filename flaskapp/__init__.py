@@ -6,7 +6,7 @@ from flaskapp.jinja_filters import friendly_datetime
 app = Flask(__name__)
 
 # CONFIGURATION TYPE
-app.config.from_object(TestConfig)
+app.config.from_object(HerokuConfig)
 
 app.jinja_env.filters['friendly_datetime'] = friendly_datetime
 
